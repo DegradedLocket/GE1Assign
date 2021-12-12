@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerCar : MonoBehaviour
 {
-    private bool accelerating = false;
+    private bool accel = false;
+
+    private float steerInput;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,7 @@ public class PlayerCar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Forward"))
+        if(Input.GetButton("Vertical"))
         {
             accel = true;
         }

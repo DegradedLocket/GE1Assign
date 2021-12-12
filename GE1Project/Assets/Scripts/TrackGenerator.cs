@@ -18,10 +18,10 @@ public class TrackGenerator : MonoBehaviour
     {
         prevPiece = firstPiece;
 
-        for (int i = 0; i < length; i++)
+        /*for (int i = 0; i < length; i++)
         {
             //spawn track
-        }
+        }*/
     }
 
 
@@ -60,6 +60,18 @@ public class TrackGenerator : MonoBehaviour
             default:
                 break;
         }
+
+        for (int i = 0; i < trackPieceData.Length; i++)
+        {
+            if(trackPieceData[i].startDir == nextDir)
+            {
+                eligbleTrackPiece.Add(trackPieceData[i]);
+            }
+        }
+
+        nextPiece = eligbleTrackPiece[Random.Range(0, eligbleTrackPiece.Count)];
+
+        return nextPiece;
     }
 
     void SpawnPiece()
@@ -69,7 +81,7 @@ public class TrackGenerator : MonoBehaviour
         GameObject objFromTrack = trackToSpawn.levelPieces[Random.Range(0, trackToSpawn.levelPieces.Length)];
         prevPiece = trackToSpawn;
 
-        Instantiate(objFromTrack, spawnPos + spawnOrg, Quaterion.identity);
+        Instantiate(objFromTrack, spawnPos + spawnOrg, Quaternion.identity);
     }
 
     public void UpdateSpawnOrg(Vector3 orgDelta)
