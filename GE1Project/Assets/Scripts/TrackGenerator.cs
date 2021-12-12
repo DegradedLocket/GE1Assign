@@ -35,16 +35,30 @@ public class TrackGenerator : MonoBehaviour
     TrackPieceData GetNextPiece()
     {
         List<TrackPieceData> eligbleTrackPiece = new List<TrackPieceData>();
+        TrackPieceData nextPiece = null;
 
         TrackPieceData.Direction nextDir = TrackPieceData.Direction.North;
 
         switch (prevPiece.endDir)
         {
             case TrackPieceData.Direction.North:
+                nextDir = TrackPieceData.Direction.South;
+                spawnPos = spawnPos + new Vector3(0f, 0, prevPiece.pieceSize.y);
+                break;
             case TrackPieceData.Direction.South:
+                nextDir = TrackPieceData.Direction.North;
+                spawnPos = spawnPos + new Vector3(0, 0, -prevPiece.pieceSize.y);
+                break;
             case TrackPieceData.Direction.East:
+                nextDir = TrackPieceData.Direction.West;
+                spawnPos = spawnPos + new Vector3(prevPiece.pieceSize.x, 0, 0);
+                break;
             case TrackPieceData.Direction.West:
+                nextDir = TrackPieceData.Direction.East;
+                spawnPos = spawnPos + new Vector3(-prevPiece.pieceSize.x, 0, 0);
+                break;
             default:
+                break;
         }
     }
 }
