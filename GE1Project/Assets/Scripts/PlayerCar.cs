@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerCar : MonoBehaviour
 {
-    private bool accel = false;
+    private float accel = 10;
+    private float deccel = 15;
+    private float maxSpeed = 100;
+    private float speed = 0;
 
     private float steerInput;
     // Start is called before the first frame update
@@ -18,7 +21,7 @@ public class PlayerCar : MonoBehaviour
     {
         if(Input.GetButton("Vertical"))
         {
-            accel = true;
+            speed = speed - (accel * Time.deltaTime);
         }
 
         steerInput = Input.GetAxis("Horizontal");
