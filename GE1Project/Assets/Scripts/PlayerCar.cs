@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCar : MonoBehaviour
 {
-    public float accel = 10;
+    public bool accel = 10;
     public float deccel = 15;
     public float maxSpeed = 100;
     public float speed = 0;
