@@ -35,9 +35,16 @@ public class PlayerCar : MonoBehaviour
                 speed = 0;
             }
         }
-
         steerInput = Input.GetAxis("Horizontal");
+    }
 
+        
+    void FixedUpdate() {
+        float temp = 0f;
+        float steering = Mathf.Lerp(steerInput, temp, 0.5f);
+
+        transform.Rotate(new Vector3(0f, steering, 0f));
+    
         transform.position = new Vector3(transform.position.x + speed, transform.position.y , transform.position.z);
     }
 }
