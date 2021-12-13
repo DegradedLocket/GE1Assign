@@ -9,6 +9,9 @@ public class PlayerCar : MonoBehaviour
     private float maxSpeed = 100;
     public float speed = 0;
 
+    public float hoverH = 2f;
+    public float hoverForce = 65f;
+
     private Rigidbody carRB;
 
     private float steerInput;
@@ -51,6 +54,19 @@ public class PlayerCar : MonoBehaviour
     void FixedUpdate() {
         float temp = 0f;
         float steering = Mathf.Lerp(steerInput, temp, 0.5f);
+
+        //logic to have car hover
+        Ray ray = new Ray(transform.position, -transform.up);
+        RaycastHit hit;
+
+        if(Physics.Raycast(ray, out hit, hoverH))
+        {
+            float propH = (hoverH - hit.distance) / hoverH;
+            Vector3 actHoverForce = Vector3.up * propH *  hoverForce;
+
+            carRB.AddForce(actHoverForce, ForceMode.Acceleration);
+        }
+        
 
         if(accel)
         {
