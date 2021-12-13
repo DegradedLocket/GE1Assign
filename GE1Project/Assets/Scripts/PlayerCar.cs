@@ -7,7 +7,7 @@ public class PlayerCar : MonoBehaviour
     public float accel = 10;
     public float deccel = 15;
     public float maxSpeed = 100;
-    private float speed = 0;
+    public float speed = 0;
 
     private float steerInput;
     // Start is called before the first frame update
@@ -19,16 +19,20 @@ public class PlayerCar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Vertical") && speed<maxSpeed)
+        if(Input.GetButton("Vertical") && speed>-maxSpeed)
         {
             speed = speed - (accel * Time.deltaTime);
         }
-
+    
         else
         {
             if(speed > (deccel * Time.deltaTime))
             {
                 speed = speed - (deccel * Time.deltaTime);
+            }
+            else if(speed <-(deccel * Time.deltaTime))
+            {
+                speed = speed + (deccel * Time.deltaTime);
             }
             else
             {
