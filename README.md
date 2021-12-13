@@ -1,7 +1,6 @@
 # GE1Assign
 C18312261 Games Engines 1 Assignment
-# Project Title
-Formula 9999
+# Formula 9999
 
 Name: Conor Melia
 
