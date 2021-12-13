@@ -28,7 +28,10 @@ public class TrackGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+         if (Input.GetKeyDown(KeyCode.T))
+        {
+            SpawnPiece();
+        }
     }
 
     //select which piece will come next

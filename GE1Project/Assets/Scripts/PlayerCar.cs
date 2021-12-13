@@ -48,6 +48,10 @@ public class PlayerCar : MonoBehaviour
             accel = false;
         }
         steerInput = Input.GetAxis("Horizontal");
+
+        //keep camra locked on y axis
+
+        
     }
 
         
