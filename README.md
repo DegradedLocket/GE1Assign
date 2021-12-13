@@ -1,18 +1,22 @@
 # GE1Assign
 C18312261 Games Engines 1 Assignment
 # Project Title
+Formula 9999
 
-Name:
+Name: Conor Melia
 
-Student Number: 
+Student Number: C18312261
 
-Class Group:
+Class Group: TU856
 
 # Description of the project
+This project is a racer that generates a procedural track as you drive.
 
 # Instructions for use
+WSAD is used to control the car around the track. "T" can be used to spawn new pieces of track(for testing purposes)
 
 # How it works
+There are modular track pieces that are used to create the track as you drive. The script for generating the track ensures that the track is always generating in the one direction, generally, to avoid doubling back on itself and generating track where there is already an asset.
 
 # List of classes/assets in the project and whether made yourself or modified or if its from a source, please give the reference
 
