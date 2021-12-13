@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class PlayerCar : MonoBehaviour
 {
-    public bool accel = 10;
-    public float deccel = 15;
-    public float maxSpeed = 100;
+    private bool accel = false;
+    private bool deccel = false;
+    private float maxSpeed = 100;
     public float speed = 0;
+
+    private Rigidbody carRB;
 
     private float steerInput;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        carRB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Vertical") && speed>-maxSpeed)
+        if(Input.GetButton("Vertical"))
         {
-            speed = speed - (accel * Time.deltaTime);
+            //speed = speed - (accel * Time.deltaTime);
+
+            accel = true;
         }
-    
         else
         {
-            if(speed > (deccel * Time.deltaTime))
+            /*if(speed > (deccel * Time.deltaTime))
             {
                 speed = speed - (deccel * Time.deltaTime);
             }
@@ -37,7 +40,9 @@ public class PlayerCar : MonoBehaviour
             else
             {
                 speed = 0;
-            }
+            }*/
+
+            accel = false;
         }
         steerInput = Input.GetAxis("Horizontal");
     }
@@ -47,8 +52,14 @@ public class PlayerCar : MonoBehaviour
         float temp = 0f;
         float steering = Mathf.Lerp(steerInput, temp, 0.5f);
 
-        transform.Rotate(new Vector3(0f, steering, 0f));
-    
-        transform.position = new Vector3(transform.position.x + speed, transform.position.y , transform.position.z);
+        if(accel)
+        {
+            carRB.AddForce(transform.forward * speed, ForceMode.Acceleration);
+            deccel = false;
+        }
+
+        carRB.transform.Rotate(new Vector3(0f, steering, 0f));
+
+        //transform.position = new Vector3(transform.position.x + speed, transform.position.y , transform.position.z);
     }
 }
