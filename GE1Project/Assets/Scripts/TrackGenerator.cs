@@ -40,37 +40,47 @@ public class TrackGenerator : MonoBehaviour
         List<TrackPieceData> eligbleTrackPiece = new List<TrackPieceData>();
         TrackPieceData nextPiece = null;
 
-        TrackPieceData.Direction nextDir = TrackPieceData.Direction.North;
+        TrackPieceData.Direction nextDir = TrackPieceData.Direction.Straight;
 
-        switch (prevPiece.endDir)
+        switch (prevPiece.dir)
         {
-            case TrackPieceData.Direction.North:
-                nextDir = TrackPieceData.Direction.South;
+            case TrackPieceData.Direction.Straight:
+                //nextDir = TrackPieceData.Direction.South;
+                eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
+                eligbleTrackPiece.Add(TrackPieceData.Direction.Right);
+                eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
+
                 spawnPos = spawnPos + new Vector3(0f, 0, prevPiece.pieceSize.y);
                 break;
-            case TrackPieceData.Direction.South:
-                nextDir = TrackPieceData.Direction.North;
+            case TrackPieceData.Direction.Left:
+                //nextDir = TrackPieceData.Direction.North;
+                eligbleTrackPiece.Add(TrackPieceData.Direction.Right);
+                eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
+                
                 spawnPos = spawnPos + new Vector3(0, 0, -prevPiece.pieceSize.y);
                 break;
-            case TrackPieceData.Direction.East:
-                nextDir = TrackPieceData.Direction.West;
+            case TrackPieceData.Direction.Right:
+                //nextDir = TrackPieceData.Direction.West;
+                eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
+                eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
+
                 spawnPos = spawnPos + new Vector3(prevPiece.pieceSize.x, 0, 0);
                 break;
-            case TrackPieceData.Direction.West:
+            /*case TrackPieceData.Direction.West:
                 nextDir = TrackPieceData.Direction.East;
                 spawnPos = spawnPos + new Vector3(-prevPiece.pieceSize.x, 0, 0);
-                break;
+                break;*/
             default:
                 break;
         }
 
-        for (int i = 0; i < trackPieceData.Length; i++)
+        /*for (int i = 0; i < trackPieceData.Length; i++)
         {
             if(trackPieceData[i].startDir == nextDir)
             {
                 eligbleTrackPiece.Add(trackPieceData[i]);
             }
-        }
+        }*/
 
         nextPiece = eligbleTrackPiece[Random.Range(0, eligbleTrackPiece.Count)];
 
