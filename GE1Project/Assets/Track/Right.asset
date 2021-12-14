@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Right
   m_EditorClassIdentifier: 
   pieceSize: {x: 10, y: 10}
-  levelPieces: []
-  dir: 0
+  levelPieces:
+  - {fileID: 1045422168086274114, guid: d093d4b477fb27b41963e9b715dc3dcb, type: 3}
+  dir: 2

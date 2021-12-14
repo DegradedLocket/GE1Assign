@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackPieceData:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  firstPiece: {fileID: 0}
+  - {fileID: 11400000, guid: 5ecb0933708cdaa469cb7898054b683f, type: 2}
+  - {fileID: 11400000, guid: 39f5f0896627418459b63dc4e2662cc9, type: 2}
+  - {fileID: 11400000, guid: bb87b7bb7f5e9a54da3917b1d4d6680e, type: 2}
+  firstPiece: {fileID: 11400000, guid: 5ecb0933708cdaa469cb7898054b683f, type: 2}
   spawnOrg: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:

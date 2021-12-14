@@ -37,7 +37,7 @@ public class TrackGenerator : MonoBehaviour
     //select which piece will come next
     TrackPieceData GetNextPiece()
     {
-        List<TrackPieceData> eligbleTrackPiece = new List<TrackPieceData>();
+        List<TrackPieceData.Direction> eligbleTrackPiece = new List<TrackPieceData.Direction>();
         TrackPieceData nextPiece = null;
 
         TrackPieceData.Direction nextDir = TrackPieceData.Direction.Straight;
@@ -74,15 +74,17 @@ public class TrackGenerator : MonoBehaviour
                 break;
         }
 
-        /*for (int i = 0; i < trackPieceData.Length; i++)
-        {
-            if(trackPieceData[i].startDir == nextDir)
-            {
-                eligbleTrackPiece.Add(trackPieceData[i]);
-            }
-        }*/
+        
 
-        nextPiece = eligbleTrackPiece[Random.Range(0, eligbleTrackPiece.Count)];
+        nextDir = eligbleTrackPiece[Random.Range(0, eligbleTrackPiece.Count)];
+
+        for (int i = 0; i < trackPieceData.Length; i++)
+        {
+            if(trackPieceData[i].dir == nextDir)
+            {
+                nextPiece = trackPieceData[i];
+            }
+        }
 
         return nextPiece;
     }
