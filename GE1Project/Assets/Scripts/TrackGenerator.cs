@@ -13,15 +13,18 @@ public class TrackGenerator : MonoBehaviour
     public Vector3 spawnOrg;
 
     private Vector3 spawnPos;
+
+    //num of pieces to spawn when game starts
+    public int initSpawn = 10;
     // Start is called before the first frame update
     void Start()
     {
         prevPiece = firstPiece;
 
-        /*for (int i = 0; i < length; i++)
+        for (int i = 0; i < initSpawn; i++)
         {
-            //spawn track
-        }*/
+            SpawnPiece();
+        }
     }
 
 
