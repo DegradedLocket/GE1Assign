@@ -18,6 +18,7 @@ public class TrackGenerator : MonoBehaviour
     private Quaternion spawnRotQ;
     private Vector3 prevRot;
 
+    private float y;
     //num of pieces to spawn when game starts
     public int initSpawn = 10;
     // Start is called before the first frame update
@@ -53,7 +54,9 @@ public class TrackGenerator : MonoBehaviour
 
         TrackPieceData.Direction nextDir = TrackPieceData.Direction.Straight;
 
-        
+        y = prevRot.y;
+
+        Debug.Log(y);
 
         switch (prevPiece.dir)
         {
@@ -63,10 +66,10 @@ public class TrackGenerator : MonoBehaviour
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Right);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
 
-                switch (prevRot.y)
+                switch (y)
                 {
                     case 0:
-                    case 80:
+                    case 180:
                         spawnPos = spawnPos + new Vector3(20, 0, 0);
                         spawnRot = spawnRot + new Vector3(0,0,0);
                         break;
@@ -84,7 +87,7 @@ public class TrackGenerator : MonoBehaviour
                 //nextDir = TrackPieceData.Direction.North;
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Right);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
-                switch (prevRot.y)
+                switch (y)
                 {
                     case 0:
                         spawnPos = spawnPos + new Vector3(0, 0, 20);
@@ -114,7 +117,7 @@ public class TrackGenerator : MonoBehaviour
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
 
-                switch (prevRot.y)
+                switch (y)
                 {
                     case 0:
                         spawnPos = spawnPos + new Vector3(0, 0, -20);
