@@ -10,7 +10,7 @@ public class TrackPieceData : ScriptableObject
         Straight, Left, Right
     }
 
-    public Vector2 pieceSize = new Vector2(10f,10f);
+    public Vector2 pieceSize = new Vector2(20,20);
 
     public GameObject[] levelPieces;
     public Direction dir;

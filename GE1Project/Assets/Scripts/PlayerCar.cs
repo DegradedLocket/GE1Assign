@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCar : MonoBehaviour
 {
     private bool accel = false;
-    private bool deccel = false;
+
     private float maxSpeed = 100;
     public float speed = 0;
 
@@ -74,11 +74,15 @@ public class PlayerCar : MonoBehaviour
 
         if(accel)
         {
+            carRB.drag = 0;
             carRB.AddForce(transform.forward * speed, ForceMode.Acceleration);
-            deccel = false;
+        }
+        else
+        {
+            carRB.drag = 2;
         }
 
-        carRB.transform.Rotate(new Vector3(0f, steering, 0f));
+        carRB.transform.Rotate(new Vector3(0f, steering * 3, 0f));
 
         //transform.position = new Vector3(transform.position.x + speed, transform.position.y , transform.position.z);
     }

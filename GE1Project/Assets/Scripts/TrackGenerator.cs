@@ -14,6 +14,9 @@ public class TrackGenerator : MonoBehaviour
 
     private Vector3 spawnPos;
 
+    private Vector3 spawnRot;
+    private Quaternion spawnRotQ;
+
     //num of pieces to spawn when game starts
     public int initSpawn = 10;
     // Start is called before the first frame update
@@ -53,21 +56,25 @@ public class TrackGenerator : MonoBehaviour
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Right);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
 
-                spawnPos = spawnPos + new Vector3(0f, 0, prevPiece.pieceSize.y);
+                spawnPos = spawnPos + new Vector3(20, 0, 0);
+                spawnRot = new Vector3(0,0,0);
                 break;
             case TrackPieceData.Direction.Left:
                 //nextDir = TrackPieceData.Direction.North;
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Right);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
                 
-                spawnPos = spawnPos + new Vector3(0, 0, -prevPiece.pieceSize.y);
+                spawnPos = spawnPos + new Vector3(0, 0, 20);
+
+                spawnRot = new Vector3(0,-90,0);
                 break;
             case TrackPieceData.Direction.Right:
                 //nextDir = TrackPieceData.Direction.West;
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
 
-                spawnPos = spawnPos + new Vector3(prevPiece.pieceSize.x, 0, 0);
+                spawnPos = spawnPos + new Vector3(0, 0, -20);
+                spawnRot = new Vector3(0,-90,0);
                 break;
             /*case TrackPieceData.Direction.West:
                 nextDir = TrackPieceData.Direction.East;
@@ -99,11 +106,14 @@ public class TrackGenerator : MonoBehaviour
         GameObject objFromTrack = trackToSpawn.levelPieces[Random.Range(0, trackToSpawn.levelPieces.Length)];
         prevPiece = trackToSpawn;
 
-        Instantiate(objFromTrack, spawnPos + spawnOrg, Quaternion.identity);
+        spawnRotQ = Quaternion.Euler(spawnRot);
+
+        Instantiate(objFromTrack, spawnPos + spawnOrg, spawnRotQ);
     }
 
     public void UpdateSpawnOrg(Vector3 orgDelta)
     {
+        
         spawnOrg = spawnOrg + orgDelta;
     }
 }
