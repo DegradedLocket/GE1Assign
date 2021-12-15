@@ -24,6 +24,8 @@ public class TrackGenerator : MonoBehaviour
     {
         prevPiece = firstPiece;
 
+        spawnOrg = spawnPos;
+
         for (int i = 0; i < initSpawn; i++)
         {
             SpawnPiece();
@@ -57,7 +59,7 @@ public class TrackGenerator : MonoBehaviour
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
 
                 spawnPos = spawnPos + new Vector3(20, 0, 0);
-                spawnRot = new Vector3(0,0,0);
+                spawnRot = spawnRot + new Vector3(0,0,0);
                 break;
             case TrackPieceData.Direction.Left:
                 //nextDir = TrackPieceData.Direction.North;
@@ -66,7 +68,7 @@ public class TrackGenerator : MonoBehaviour
                 
                 spawnPos = spawnPos + new Vector3(0, 0, 20);
 
-                spawnRot = new Vector3(0,-90,0);
+                spawnRot = spawnRot + new Vector3(0,-90,0);
                 break;
             case TrackPieceData.Direction.Right:
                 //nextDir = TrackPieceData.Direction.West;
@@ -74,7 +76,7 @@ public class TrackGenerator : MonoBehaviour
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
 
                 spawnPos = spawnPos + new Vector3(0, 0, -20);
-                spawnRot = new Vector3(0,-90,0);
+                spawnRot = spawnRot +  new Vector3(0,90,0);
                 break;
             /*case TrackPieceData.Direction.West:
                 nextDir = TrackPieceData.Direction.East;

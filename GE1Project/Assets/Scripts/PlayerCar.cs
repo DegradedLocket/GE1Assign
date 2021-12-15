@@ -6,7 +6,7 @@ public class PlayerCar : MonoBehaviour
 {
     private bool accel = false;
 
-    private float maxSpeed = 100;
+    //private float maxSpeed = 100;
     public float speed = 0;
 
     public float hoverH = 2f;
@@ -32,19 +32,6 @@ public class PlayerCar : MonoBehaviour
         }
         else
         {
-            /*if(speed > (deccel * Time.deltaTime))
-            {
-                speed = speed - (deccel * Time.deltaTime);
-            }
-            else if(speed <-(deccel * Time.deltaTime))
-            {
-                speed = speed + (deccel * Time.deltaTime);
-            }
-            else
-            {
-                speed = 0;
-            }*/
-
             accel = false;
         }
         steerInput = Input.GetAxis("Horizontal");
