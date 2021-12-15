@@ -28,7 +28,9 @@ There are modular track pieces that are used to create the track as you drive. T
 # References
 Idea for deceleration came from this forum: https://answers.unity.com/questions/750235/how-to-add-opposite-force-of-current-direction.html
 # What I am most proud of in the assignment
-Even though it doesn't work as it should, when I got my progam to start creating track objects it was a great moment, as lots of trials and effort led to it somewhat working
+Even though it doesn't work as it should, when I got my progam to start creating track objects it was a great moment, as lots of trials and effort led to it somewhat working.
+
+Also I am a fan of the car movement, the hovering looks pretty cool.
 # Proposal submitted earlier can go here:
 Games Engines 1 Project Proposal
 

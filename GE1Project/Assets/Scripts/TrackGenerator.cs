@@ -16,12 +16,15 @@ public class TrackGenerator : MonoBehaviour
 
     private Vector3 spawnRot;
     private Quaternion spawnRotQ;
+    private Vector3 prevRot;
 
     //num of pieces to spawn when game starts
     public int initSpawn = 10;
     // Start is called before the first frame update
     void Start()
     {
+        prevRot = new Vector3(0,0,0);
+
         prevPiece = firstPiece;
 
         spawnOrg = spawnPos;
@@ -50,6 +53,8 @@ public class TrackGenerator : MonoBehaviour
 
         TrackPieceData.Direction nextDir = TrackPieceData.Direction.Straight;
 
+        
+
         switch (prevPiece.dir)
         {
             case TrackPieceData.Direction.Straight:
@@ -58,25 +63,80 @@ public class TrackGenerator : MonoBehaviour
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Right);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
 
-                spawnPos = spawnPos + new Vector3(20, 0, 0);
-                spawnRot = spawnRot + new Vector3(0,0,0);
+                switch (prevRot.y)
+                {
+                    case 0:
+                    case 80:
+                        spawnPos = spawnPos + new Vector3(20, 0, 0);
+                        spawnRot = spawnRot + new Vector3(0,0,0);
+                        break;
+                    case 90:
+                    case -90:
+                        spawnPos = spawnPos + new Vector3(0, 0, 20);
+                        spawnRot = spawnRot + new Vector3(0,0,0);
+                        break;
+                    default:
+                        break;
+                }
+                
                 break;
             case TrackPieceData.Direction.Left:
                 //nextDir = TrackPieceData.Direction.North;
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Right);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
-                
-                spawnPos = spawnPos + new Vector3(0, 0, 20);
-
-                spawnRot = spawnRot + new Vector3(0,-90,0);
+                switch (prevRot.y)
+                {
+                    case 0:
+                        spawnPos = spawnPos + new Vector3(0, 0, 20);
+                        spawnRot = spawnRot + new Vector3(0,-90,0);
+                        break;
+                    case 180:
+                        spawnPos = spawnPos + new Vector3(00, 0, -20);
+                        spawnRot = spawnRot + new Vector3(0,-180,0);
+                        break;
+                    
+                    case 90:
+                        spawnPos = spawnPos + new Vector3(20, 0, 0);
+                        spawnRot = spawnRot + new Vector3(0,0,0);
+                        break;
+                    case -90:
+                        spawnPos = spawnPos + new Vector3(-20, 0,0);
+                        spawnRot = spawnRot + new Vector3(0,180,0);
+                        break;
+                    default:
+                        break;
+                    
+                }
                 break;
+                
             case TrackPieceData.Direction.Right:
                 //nextDir = TrackPieceData.Direction.West;
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Left);
                 eligbleTrackPiece.Add(TrackPieceData.Direction.Straight);
 
-                spawnPos = spawnPos + new Vector3(0, 0, -20);
-                spawnRot = spawnRot +  new Vector3(0,90,0);
+                switch (prevRot.y)
+                {
+                    case 0:
+                        spawnPos = spawnPos + new Vector3(0, 0, -20);
+                        spawnRot = spawnRot + new Vector3(0,90,0);
+                        break;
+                    case 180:
+                        spawnPos = spawnPos + new Vector3(00, 0, 20);
+                        spawnRot = spawnRot + new Vector3(0,180,0);
+                        break;
+                    
+                    case 90:
+                        spawnPos = spawnPos + new Vector3(-20, 0, 0);
+                        spawnRot = spawnRot + new Vector3(0,180,0);
+                        break;
+                    case -90:
+                        spawnPos = spawnPos + new Vector3(20, 0,0);
+                        spawnRot = spawnRot + new Vector3(0,0,0);
+                        break;
+                    default:
+                        break;
+                }
+                
                 break;
             /*case TrackPieceData.Direction.West:
                 nextDir = TrackPieceData.Direction.East;
@@ -110,12 +170,8 @@ public class TrackGenerator : MonoBehaviour
 
         spawnRotQ = Quaternion.Euler(spawnRot);
 
-        Instantiate(objFromTrack, spawnPos + spawnOrg, spawnRotQ);
-    }
+        prevRot = objFromTrack.transform.eulerAngles;
 
-    public void UpdateSpawnOrg(Vector3 orgDelta)
-    {
-        
-        spawnOrg = spawnOrg + orgDelta;
+        Instantiate(objFromTrack, spawnPos + spawnOrg, spawnRotQ);
     }
 }
